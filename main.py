@@ -14,7 +14,6 @@ import matplotlib
 matplotlib.use('TKAgg')
 import matplotlib.pyplot as plt
 import pylab as pyl
-from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 
 #--- load libraries: read Architect format --- #
 sys.path.append(os.path.join(os.path.expanduser('~'),'Codes','Code_Architect','Architect','utils','python_utils','architect_graphycal_unit'))
@@ -34,13 +33,11 @@ from particle_selector import *
 path = os.getcwd()
 
 
-
 #--- main analisys ---#
-
-#read_architect_bin('PS',path,frm_number)
+x,y,z,px,py,pz,w = read_bunch_PS('PSBunch04.bin')
 
 # read PS file
-Xcut, Ycut, Zcut, Pxcut, Pycut, Pzcut, Wcut = particle_selector('slice',0,3,X,Y,Z,Px,Py,Pz,W)
+# Xcut, Ycut, Zcut, Pxcut, Pycut, Pzcut, Wcut = particle_selector('slice',0,3,X,Y,Z,Px,Py,Pz,W)
 
 # print at screen
-print_all_diagnostics(Xcut, Ycut, Zcut, Pxcut, Pycut, Pzcut, Wcut)
+# print_all_diagnostics(Xcut, Ycut, Zcut, Pxcut, Pycut, Pzcut, Wcut)
