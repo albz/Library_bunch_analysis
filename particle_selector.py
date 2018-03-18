@@ -1,9 +1,9 @@
 #!/usr/bin/python
 ######################################################################
 # Name:         particle_selector.py
-# Author:       A. Marocchino, S. Romeo
+# Author:       A. Marocchino
 # Date:
-# Purpose:      In 'Lybrary_bunch_Analysis' select particle to analize
+# Purpose:      In 'Lybrary_bunch_Analysis' select particle to analyse
 # Source:       Python
 #####################################################################
 
@@ -12,10 +12,15 @@ import numpy as np
 ### --- ###
 
 ### --- select strategy --- ###
-def particle_selector(strategy,Zmin,Zmax,X,Y,Z,Px,Py,Pz,W):
+def particle_selector(strategy,value_min,value_max,x,y,z,px,py,pz,w):
 
     if strategy == 'slice':
-        particle_selector_slice(Zmin,Zmax,X,Y,Z,Px,Py,Pz,W)
+        x,y,z,px,py,pz,w=particle_selector_slice(value_min,value_max,x,y,z,px,py,pz,w)
+
+    if strategy == 'gamma':
+        x,y,z,px,py,pz,w=particle_selector_gamma(value_min,value_max,x,y,z,px,py,pz,w)
+
+    return x,y,z,px,py,pz,w
 
 ### --- END select strategy --- ###
 
@@ -23,7 +28,16 @@ def particle_selector(strategy,Zmin,Zmax,X,Y,Z,Px,Py,Pz,W):
 
 def particle_selector_slice(Zmin,Zmax,X,Y,Z,Px,Py,Pz,W):
     selected = np.asarray(Z>=z_min) & np.asarray(Z<=z_max)
-    X, Y, Z  = X[selected], Y[selected], Z[selected]
-    Px,Py,Pz =Px[selected],Py[selected],Pz[selected]
-    W = W[selected]
-    return X,Y,Z,Px,Py,Pz,W
+    x, y, z  = x[selected], y[selected], z[selected]
+    px,py,pz =px[selected],py[selected],pz[selected]
+    w = w[selected]
+    return x,y,z,px,py,pz,w
+
+
+def particle_selector_gamma(gamma_min,gamma_max,x,y,z,px,py,pz,w):
+    gamma = np.sqrt(1.+px**2+py**2+pz**2)
+    selected = np.asarray(gamma>=gamma_min) & np.asarray(gamma<=gamma_max)
+    x, y, z  = x[selected], y[selected], z[selected]
+    px,py,pz =px[selected],py[selected],pz[selected]
+    w = w[selected]
+    return x,y,z,px,py,pz,w

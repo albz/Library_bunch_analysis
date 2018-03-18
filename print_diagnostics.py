@@ -13,7 +13,7 @@ from diagnostic_functions import *
 ### --- ###
 
 
-def print_all_diagnostics(x,y,z,px,py,pz,w):
+def print_bunch_quality(x,y,z,px,py,pz,w):
 	print('\n')
 	print('sx = ',sigma(x,w),' (um)')
 	print('sy = ',sigma(y,w),' (um)')

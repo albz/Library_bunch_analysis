@@ -16,13 +16,15 @@ import matplotlib.pyplot as plt
 import pylab as pyl
 
 #--- load libraries: read Architect format --- #
-sys.path.append(os.path.join(os.path.expanduser('~'),'Codes','Code_Architect','Architect','utils','python_utils','architect_graphycal_unit'))
-from read_architect_bin import *
+# sys.path.append(os.path.join(os.path.expanduser('~'),'Codes','Code_Architect','Architect','utils','python_utils','architect_graphycal_unit'))
+# from read_architect_bin import *
 
 #--- load libraries: Library_Bunch_Analisys --- #
 from diagnostic_functions import *
 from particle_selector import *
-# from rolling_slice import *
+from read_bunch_PS_master import *
+from print_diagnostics import *
+from plot_phase_space import *
 
 #--- load libraries: plot_utility --- #
 # plt.style.use(os.path.join(os.path.expanduser('~'),'Codes','Python_general_controllers','python_plot','plot_style_ppth.mplstyle'))
@@ -32,12 +34,13 @@ from particle_selector import *
 # --- path --- #
 path = os.getcwd()
 
-
 #--- main analisys ---#
-x,y,z,px,py,pz,w = read_bunch_PS('PSBunch04.bin')
+x,y,z,px,py,pz,w = read_bunch_PS(path,'Elpout04.bin')
+xs,ys,zs,pxs,pys,pzs,ws = particle_selector('gamma',15,5e3,x,y,z,px,py,pz,w)
 
-# read PS file
-# Xcut, Ycut, Zcut, Pxcut, Pycut, Pzcut, Wcut = particle_selector('slice',0,3,X,Y,Z,Px,Py,Pz,W)
+#--- plots ---#
+plot_dots(zs,pzs,w)
+plot_scatter(zs,pzs,w)
 
-# print at screen
-# print_all_diagnostics(Xcut, Ycut, Zcut, Pxcut, Pycut, Pzcut, Wcut)
+#--- print ---#
+print_bunch_quality(xs,ys,zs,pxs,pys,pzs,ws)

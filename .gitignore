@@ -1,0 +1,55 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.suo
+*.u2d
+*.sdf
+*.user
+*.swp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+.DS_Store
+
+opt_report.txt
+*.optrpt
+
+[Bb]uild*/
+!scripts/build/
+[Bb]in/
+.vs/
+.vscode/
+
+cmake.*
+make.*
+!/scripts/build/cmake.*
+!/scripts/build/make.*
+
+.project
+*.nml
+index.md
+
+# python
+*.pyc
