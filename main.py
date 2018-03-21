@@ -37,6 +37,7 @@ path = os.getcwd()
 #--- main analisys ---#
 x,y,z,px,py,pz,w = read_bunch_PS(path,'Elpout04.bin')
 xs,ys,zs,pxs,pys,pzs,ws = particle_selector('gamma',15,5e3,x,y,z,px,py,pz,w)
+xs,ys,zs,pxs,pys,pzs,ws = particle_selector('slice',225.5,1e4,xs,ys,zs,pxs,pys,pzs,ws)
 
 #--- plots ---#
 plot_dots(zs,pzs,w)

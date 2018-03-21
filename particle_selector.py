@@ -29,8 +29,8 @@ def particle_selector(strategy,value_min,value_max,x,y,z,px,py,pz,w):
 
 
 
-def particle_selector_slice(Zmin,Zmax,X,Y,Z,Px,Py,Pz,W):
-    selected = np.asarray(Z>=z_min) & np.asarray(Z<=z_max)
+def particle_selector_slice(z_min,z_max,x,y,z,px,py,pz,w):
+    selected = np.asarray(z>=z_min) & np.asarray(z<=z_max)
     x, y, z  = x[selected], y[selected], z[selected]
     px,py,pz =px[selected],py[selected],pz[selected]
     w = w[selected]
