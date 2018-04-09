@@ -23,7 +23,7 @@ def plot_dots(x,y,w,*args):
 		ax1.set_ylabel(args[1])
 	pyl.show()
 
-def plot_scatter(x,y,w):
+def plot_scatter(x,y,w,*args):
 	size=3*w/np.max(w)
 	fig,ax1 = plt.subplots(1, figsize=(3.25,3.0))
 	ax1.scatter(x,y,s=size)

@@ -35,13 +35,24 @@ from plot_phase_space import *
 path = os.getcwd()
 
 #--- main analisys ---#
-x,y,z,px,py,pz,w = read_bunch_PS(path,'Elpout04.bin')
-xs,ys,zs,pxs,pys,pzs,ws = particle_selector('gamma',15,5e3,x,y,z,px,py,pz,w)
-xs,ys,zs,pxs,pys,pzs,ws = particle_selector('slice',225.5,1e4,xs,ys,zs,pxs,pys,pzs,ws)
+x,y,z,px,py,pz,w = read_bunch_PS(os.path.join(path,'N++_longer_lower'),'Elpout06.bin')
+
+#--- select ionized particle by weight ---#
+xs,ys,zs,pxs,pys,pzs,ws = particle_selector('weight',0.00,0.1,x,y,z,px,py,pz,w)
+xs,ys,zs,pxs,pys,pzs,ws = particle_selector('gamma',5.,70.0,xs,ys,zs,pxs,pys,pzs,ws)
+#xs,ys,zs,pxs,pys,pzs,ws = particle_selector('slice',0.0,293.0,xs,ys,zs,pxs,pys,pzs,ws)
+pyl.plot(z-np.mean(z),pz,'.')
+pyl.plot(zs-np.mean(z),pzs,'.')
+
+pyl.plot(z-np.mean(z),x,'.')
+pyl.plot(zs-np.mean(z),xs,'.')
+
+
+print(zs.shape)
 
 #--- plots ---#
-plot_dots(zs,pzs,w)
-plot_scatter(zs,pzs,w)
+plot_scatter(zs,pzs,ws,'z','pz')
+plot_scatter(z,w,w,'z','w')
 
 #--- print ---#
 print_bunch_quality(xs,ys,zs,pxs,pys,pzs,ws)

@@ -11,15 +11,18 @@
 import numpy as np
 ### --- ###
 
+def mean(x,w):
+	mu=np.average(x,weights=w)
+	return mu
 
 def sigma(x,w):
-	mu=np.average(x,weights=w)
+	mu=mean(x,w)
 	sigma=np.sqrt( np.average((x-mu)**2, weights=w) )
 	return sigma
 
 def covariance(x,px,w):
-	mu_x=np.average(x,weights=w)
-	mu_px=np.average(px,weights=w)
+	mu_x=mean(x,w)
+	mu_px=mean(px,w)
 	covariance=np.average((x-mu_x)*(px-mu_px), weights=w)
 	return covariance
 
@@ -36,3 +39,9 @@ def energy_spread(px,py,pz,w):
 	sigma_gamma=np.sqrt( np.average((gamma-mu_gamma)**2, weights=w) )
 	en_spread = sigma_gamma/mu_gamma
 	return en_spread
+
+def alpha(x,px,py,pz,w):
+	cov=covariance(x,px,w)
+	eps=emittance(x,px,w)
+	mu_gamma=mean(np.array(np.sqrt(1. + px**2 + py**2 + pz**2)),w)
+	return cov/eps/mu_gamma
