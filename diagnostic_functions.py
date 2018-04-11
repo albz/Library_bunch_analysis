@@ -43,5 +43,4 @@ def energy_spread(px,py,pz,w):
 def alpha(x,px,py,pz,w):
 	cov=covariance(x,px,w)
 	eps=emittance(x,px,w)
-	mu_gamma=mean(np.array(np.sqrt(1. + px**2 + py**2 + pz**2)),w)
-	return cov/eps/mu_gamma
+	return -cov/eps
