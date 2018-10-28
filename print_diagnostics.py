@@ -22,4 +22,4 @@ def print_bunch_quality(x,y,z,px,py,pz,w):
 	print('ex = ',emittance(x,px,w),' (mm-mrad)')
 	print('ey = ',emittance(y,py,w),' (mm-mrad)')
 	print('\n')
-	print('dg/g = ',energy_spread(px,py,pz,w),' (1)')
+	print('dg/g (%) = ',energy_spread(px,py,pz,w)*100.,' (1)')

@@ -11,7 +11,7 @@ import os, os.path
 import scipy
 import numpy as np
 import matplotlib
-matplotlib.use('TKAgg')
+#matplotlib.use('TKAgg')
 import matplotlib.pyplot as plt
 import pylab as pyl
 
